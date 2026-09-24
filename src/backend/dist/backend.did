@@ -1,0 +1,99 @@
+type ViewingRequestInput = 
+ record {
+   email: text;
+   message: text;
+   name: text;
+   phone: text;
+   preferredDate: text;
+ };
+type ViewingRequest = 
+ record {
+   email: text;
+   id: RequestId;
+   message: text;
+   name: text;
+   phone: text;
+   preferredDate: text;
+   submittedAt: Timestamp;
+ };
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type ValidationError = 
+ variant {
+   emailInvalid;
+   emailRequired;
+   messageRequired;
+   nameRequired;
+   phoneRequired;
+   preferredDateRequired;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type Timestamp = int;
+type SubmitResult = 
+ variant {
+   err: vec ValidationError;
+   ok: ViewingRequest;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type RequestId = nat;
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  execute: (qJson: text) -> (Result) query;
+  getApiDoc: () -> (text) query;
+  getCallerUserRole: () -> (UserRole) query;
+  isCallerAdmin: () -> (bool) query;
+  listViewingRequests: () -> (vec ViewingRequest) query;
+  schema: () -> (text) query;
+  submitViewingRequest: (input: ViewingRequestInput) -> (SubmitResult);
+}

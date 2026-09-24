@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "Satoshi";
+    --font-mono: "Geist Mono";
+    --radius: 0.125rem;
+
+    /* Bermuda limestone white — the dominant surface */
+    --background: 0.97 0.004 95;
+    --foreground: 0.24 0.045 250;
+
+    /* Cards sit as the cleanest limestone plane */
+    --card: 0.985 0.003 95;
+    --card-foreground: 0.24 0.045 250;
+    --popover: 0.99 0.002 95;
+    --popover-foreground: 0.24 0.045 250;
+
+    /* Deep ocean navy — the ink of the brand */
+    --primary: 0.24 0.045 250;
+    --primary-foreground: 0.97 0.004 95;
+
+    /* Soft sand beige — warm secondary surfaces */
+    --secondary: 0.93 0.014 88;
+    --secondary-foreground: 0.24 0.045 250;
+    --muted: 0.94 0.011 90;
+    --muted-foreground: 0.48 0.018 250;
+
+    /* Rich matte leaf-green — the single botanical accent */
+    --accent: 0.42 0.075 150;
+    --accent-foreground: 0.97 0.004 95;
+
+    --destructive: 0.5 0.16 28;
+    --destructive-foreground: 0.97 0.004 95;
+
+    --success: 0.42 0.075 150;
+    --warning: 0.62 0.11 80;
+
+    /* Hairlines, not shadows */
+    --border: 0.88 0.008 92;
+    --input: 0.88 0.008 92;
+    --ring: 0.42 0.075 150;
+
+    --chart-1: 0.42 0.075 150;
+    --chart-2: 0.24 0.045 250;
+    --chart-3: 0.62 0.06 88;
+    --chart-4: 0.55 0.05 210;
+    --chart-5: 0.7 0.03 150;
+
+    /* Bermuda interior architecture — coral stone, ironwork, glazing light */
+    --stone-coral: 0.9 0.017 62; /* weathered coral stone wall */
+    --stone-coral-deep: 0.82 0.024 58; /* shaded coral stone reveal */
+    --iron-navy: 0.3 0.038 250; /* navy ironwork / gate rail */
+    --glazing: 0.955 0.014 205; /* ocean-facing glazing daylight */
+    --gravel: 0.88 0.006 96; /* pale gravel-drive neutral */
+    --interior-glow: 0.965 0.012 78; /* warm interior daylight wash */
+
+    --sidebar: 0.955 0.006 93;
+    --sidebar-foreground: 0.24 0.045 250;
+    --sidebar-primary: 0.24 0.045 250;
+    --sidebar-primary-foreground: 0.97 0.004 95;
+    --sidebar-accent: 0.93 0.014 88;
+    --sidebar-accent-foreground: 0.24 0.045 250;
+    --sidebar-border: 0.88 0.008 92;
+    --sidebar-ring: 0.42 0.075 150;
+
+    /* Non-color tokens */
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.97 0.004 95) 0%,
+      oklch(0.945 0.009 92) 100%
+    );
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.24 0.045 250) 0%,
+      oklch(0.31 0.05 245) 100%
+    );
+    /* Warm interior daylight falling across a limestone wall */
+    --gradient-interior: linear-gradient(
+      160deg,
+      oklch(0.965 0.012 78) 0%,
+      oklch(0.955 0.014 205) 46%,
+      oklch(0.9 0.017 62) 100%
+    );
+    /* Ocean-facing glazing light bleeding into a room */
+    --gradient-glazing: linear-gradient(
+      200deg,
+      oklch(0.955 0.014 205) 0%,
+      oklch(0.97 0.004 95) 70%
+    );
+    --transition-smooth: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .dark {
+    /* Deep ocean navy night — the estate after dusk */
+    --background: 0.19 0.028 250;
+    --foreground: 0.94 0.008 95;
+    --card: 0.225 0.03 250;
+    --card-foreground: 0.94 0.008 95;
+    --popover: 0.225 0.03 250;
+    --popover-foreground: 0.94 0.008 95;
+
+    --primary: 0.94 0.008 95;
+    --primary-foreground: 0.19 0.028 250;
+
+    --secondary: 0.26 0.03 250;
+    --secondary-foreground: 0.9 0.008 95;
+    --muted: 0.26 0.03 250;
+    --muted-foreground: 0.66 0.012 95;
+
+    --accent: 0.68 0.09 150;
+    --accent-foreground: 0.19 0.028 250;
+
+    --destructive: 0.62 0.16 28;
+    --destructive-foreground: 0.19 0.028 250;
+
+    --success: 0.68 0.09 150;
+    --warning: 0.76 0.12 80;
+
+    --border: 0.3 0.028 250;
+    --input: 0.3 0.028 250;
+    --ring: 0.68 0.09 150;
+
+    --chart-1: 0.68 0.09 150;
+    --chart-2: 0.8 0.03 95;
+    --chart-3: 0.66 0.06 88;
+    --chart-4: 0.6 0.06 210;
+    --chart-5: 0.72 0.04 150;
+
+    /* Interior architecture, tuned for the estate after dusk */
+    --stone-coral: 0.42 0.03 58;
+    --stone-coral-deep: 0.34 0.028 56;
+    --iron-navy: 0.3 0.034 250;
+    --glazing: 0.44 0.035 205;
+    --gravel: 0.32 0.01 96;
+    --interior-glow: 0.36 0.02 78;
+
+    --sidebar: 0.225 0.03 250;
+    --sidebar-foreground: 0.94 0.008 95;
+    --sidebar-primary: 0.94 0.008 95;
+    --sidebar-primary-foreground: 0.19 0.028 250;
+    --sidebar-accent: 0.26 0.03 250;
+    --sidebar-accent-foreground: 0.9 0.008 95;
+    --sidebar-border: 0.3 0.028 250;
+    --sidebar-ring: 0.68 0.09 150;
+
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.19 0.028 250) 0%,
+      oklch(0.225 0.03 250) 100%
+    );
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.94 0.008 95) 0%,
+      oklch(0.86 0.01 92) 100%
+    );
+    --gradient-interior: linear-gradient(
+      160deg,
+      oklch(0.36 0.02 78) 0%,
+      oklch(0.44 0.035 205) 46%,
+      oklch(0.42 0.03 58) 100%
+    );
+    --gradient-glazing: linear-gradient(
+      200deg,
+      oklch(0.44 0.035 205) 0%,
+      oklch(0.19 0.028 250) 70%
+    );
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: "ss01", "cv01";
+  }
+  ::selection {
+    background: oklch(var(--accent) / 0.18);
+    color: oklch(var(--foreground));
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  /* The STONE & LEAF / BERMUDA lockup treatment */
+  .lockup {
+    font-family: var(--font-display);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.34em;
+    text-indent: 0.34em;
+  }
+
+  /* Small technical eyebrow labels */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+  }
+
+  /* Nav + button label treatment */
+  .tracked {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-interior {
+    background-image: var(--gradient-interior);
+  }
+  .bg-gradient-glazing {
+    background-image: var(--gradient-glazing);
+  }
+
+  .hairline-t {
+    border-top: 1px solid oklch(var(--border));
+  }
+  .hairline-b {
+    border-bottom: 1px solid oklch(var(--border));
+  }
+
+  /* Bermuda interior architecture — surface + framing treatments */
+
+  /* Coral stone wall texture: warm irregular horizontal courses, no imagery */
+  .stone-wall {
+    background-color: oklch(var(--stone-coral));
+    background-image: repeating-linear-gradient(
+        180deg,
+        oklch(var(--stone-coral-deep) / 0.28) 0px,
+        oklch(var(--stone-coral-deep) / 0.28) 1px,
+        transparent 1px,
+        transparent 34px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        oklch(var(--stone-coral-deep) / 0.16) 0px,
+        oklch(var(--stone-coral-deep) / 0.16) 1px,
+        transparent 1px,
+        transparent 96px
+      );
+  }
+
+  /* Warm interior daylight wash for section bands */
+  .wash-interior {
+    background-image: var(--gradient-interior);
+  }
+
+  /* Ocean-facing glazing light — soft cool bleed from one edge */
+  .glazing-light {
+    background-image: var(--gradient-glazing);
+  }
+
+  /* Frames imagery as a Bermuda interior room, not a product shot:
+     stone reveal, glazing light, and a hairline ironwork rule. */
+  .room-frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid oklch(var(--border));
+    background-color: oklch(var(--stone-coral));
+    box-shadow: 0 34px 80px -44px oklch(var(--primary) / 0.34), 0 2px 0 0
+      oklch(var(--stone-coral-deep) / 0.5);
+  }
+  .room-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      205deg,
+      oklch(var(--glazing) / 0.22) 0%,
+      transparent 42%,
+      oklch(var(--interior-glow) / 0.18) 100%
+    );
+  }
+  /* Navy ironwork rule — the gate rail detail */
+  .ironwork-rule {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      oklch(var(--iron-navy) / 0.9) 0%,
+      oklch(var(--iron-navy) / 0.35) 60%,
+      transparent 100%
+    );
+  }
+
+  /* Gravel-drive neutral band */
+  .gravel-band {
+    background-color: oklch(var(--gravel) / 0.6);
+  }
+
+  .reveal {
+    animation: reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
